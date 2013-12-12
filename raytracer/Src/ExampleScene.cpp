@@ -29,10 +29,17 @@ void ExampleScene::initializeBitcoin()
 //	rtTriangleMesh("../Standard_Tests/custom/Paris/Paris2010_0.obj",true,false);
 //	rtPopMatrix();
   
+//  rtPushMatrix();
+//  rtTranslate(10.f,5.f,13.f);
+//	rtScale(.01f,.01f,.01f);
+//	rtTriangleMesh("../Standard_Tests/custom/Paris/Paris2010_0.obj",true,false);
+//	rtPopMatrix();
+//  
   rtPushMatrix();
+  rtMaterial(mat_glass2);
   rtTranslate(10.f,5.f,13.f);
 	rtScale(.1f,.1f,.1f);
-  rtRotate(2.f, 0.f, 0.f);
+  rtRotate(.3f, 30.f, 10.f); // x, y, z rotations
 	rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
 	rtPopMatrix();
   
@@ -46,22 +53,22 @@ void ExampleScene::initializeBitcoin()
 //	rtBox(STPoint3(12.f,2.01f,5.f),STVector3(2.f,4.f,.8f));
 
 	////environment box
-	Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.8f,.8f,.8f),STColor3f(),STColor3f(),0.f);
-	Material mat_wall(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
+	Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),0.f);
+	Material mat_wall(STColor3f(0.f,5.f,23.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
 	rtMaterial(mat_ground);
 	////ground
-	addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
+	addGround(STPoint3(0.f,0.f,0.f),STVector2(100.f,100.f),true);
 	rtMaterial(mat_wall);
 	////ceil
-	addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),false);
+	addGround(STPoint3(0.f,0.f,0.f),STVector2(100.f,100.f),false);
 	////background wall
-	addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
+	addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(100.f,100.f),true);
 	////forward wall
-	addBackgroundWall(STPoint3(0.f,0.f,20.f),STVector2(20.f,20.f),false);
+	addBackgroundWall(STPoint3(0.f,0.f,100.f),STVector2(100.f,100.f),false);
 	////left wall
-	addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),true);
+	addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,100.f,0.f),STVector3(0.f,0.f,100.f),true);
 	////right wall
-	addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
+	addWall(STPoint3(100.f,0.f,0.f),STVector3(0.f,100.f,0.f),STVector3(0.f,0.f,100.f),false);
   
   ////use acceleration structure
   //////aabb tree
