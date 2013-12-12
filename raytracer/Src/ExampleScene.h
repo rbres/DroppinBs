@@ -23,7 +23,7 @@ public:
     void initializeSceneAccelerationStructureBVH();   ////clustered objects
 
     ////example assignment 6: transparent objects and camera effects
-    void initializeSceneTransparentObject();
+    void initializeBitcoin();
 	void initializeSceneTransparentObject2();
     void initializeSceneDepthOfField();
 

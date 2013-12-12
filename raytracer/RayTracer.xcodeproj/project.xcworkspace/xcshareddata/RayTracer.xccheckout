@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>912FCABC-6E85-4367-B88D-00FA9BE48B0A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RayTracer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>42F16B4C-8A37-44BA-B392-5234540FEE0F</key>
+		<string>ssh://github.com/rbres/DroppinBs.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>raytracer/RayTracer.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>42F16B4C-8A37-44BA-B392-5234540FEE0F</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/rbres/DroppinBs.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>42F16B4C-8A37-44BA-B392-5234540FEE0F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>42F16B4C-8A37-44BA-B392-5234540FEE0F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>droppinbs</string>
+		</dict>
+	</array>
+</dict>
+</plist>
