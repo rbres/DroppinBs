@@ -50,38 +50,37 @@ void ExampleScene::initializeBitcoin()
       rtPopMatrix();
     }
   
+    // Plane closest to the camera
     rtPushMatrix();
       rtMaterial(mat_metal);
       rtTranslate(10.4f,5.f,15.f);
       rtScale(.1f,.1f,.1f);
-      rtRotate(.3f, 30.f, 10.f); // x, y, z rotations
+      rtRotate(.5f, 30.f, 10.f); // x, y, z rotations
       rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
     rtPopMatrix();
   
-//	rtMaterial(mat_glass1);
-//	rtSphere(STPoint3(6.f,1.01f,5.f),1.f);
-//
-//	rtMaterial(mat_metal);
-//	rtCylinder(STPoint3(9.f,0.01f,5.f),STPoint3(9.f,3.01f,5.f),1.f);
-//	
-//	rtMaterial(mat_glass2);
-//	rtBox(STPoint3(12.f,2.01f,5.f),STVector3(2.f,4.f,.8f));
+    // Plane on the top right
+    rtPushMatrix();
+      rtMaterial(mat_metal);
+      rtTranslate(12.f,6.f,13.f);
+      rtScale(.05f,.05f,.05f);
+      rtRotate(.5f, 31.f, 10.f); // x, y, z rotations
+      rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
+    rtPopMatrix();
+  
+    // Plane on the bottom right
+    rtPushMatrix();
+      rtMaterial(mat_metal);
+      rtTranslate(11.f,3.2f,13.f);
+      rtScale(.05f,.05f,.05f);
+      rtRotate(.5f, 30.f, 10.f); // x, y, z rotations
+      rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
+    rtPopMatrix();
 
 	////environment box
 	Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),0.f);
 	Material mat_wall(STColor3f(0.f,5.f,23.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
 	rtMaterial(mat_ground);
-  
-  // GROUND
-//  rtLoadTexture("../Standard_Tests/custom/cityscape.jpg"); // Open texture and set it to id = 0
-//  rtBindTexture(0);
-//  STPoint3 min_corner = STPoint3(0.f,0.f,0.f);
-//  STVector2 size = STVector2(10.f,10.f);
-//  
-//  rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z+size.y),STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z), STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f));
-//  rtTriangle(min_corner,STPoint3(min_corner.x,min_corner.y,min_corner.z+size.y),STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z+size.y), STPoint2(0.f, 0.f), STPoint2(1.f, 1.f), STPoint2(0.f, 1.f));
-//  
-//  rtUnbindTexture();
 
   // Back wall
   rtLoadTexture("../Standard_Tests/custom/cityscape.jpg"); // Open texture and set it to id = 1
