@@ -127,3 +127,11 @@ xcuserdata
 # UNKNOWN: recommended by others, but I can't discover what these files are
 #
 # ...none. Everything is now explained.
+
+*.xcuserstate
+raytracer/Standard_Tests/Bitcoin.png
+
+raytracer/Debug/RayTracer
+
+raytracer/RayTracer.xcodeproj/project.xcworkspace/xcuserdata/alainmeier.xcuserdatad/UserInterfaceState.xcuserstate
+raytracer/RayTracer.xcodeproj/project.xcworkspace/xcuserdata/rbrezz.xcuserdatad/UserInterfaceState.xcuserstate
