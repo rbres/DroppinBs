@@ -7,7 +7,7 @@ void ExampleScene::initializeBitcoin()
 	////global settings
 	rtCamera(/*eye*/STPoint3(10.f,5.f,19.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.33f);
 	rtOutput(/*width*/640,/*height*/480,/*path*/"../Standard_Tests/Bitcoin.png");
-	rtBounceDepth(1);
+	rtBounceDepth(5);
 	rtUseTransparentShadow(true);
 	rtShadowBias(.001f);
 	rtSampleRate(1);
@@ -28,47 +28,39 @@ void ExampleScene::initializeBitcoin()
 //	rtScale(.01f,.01f,.01f);
 //	rtTriangleMesh("../Standard_Tests/custom/Paris/Paris2010_0.obj",true,false);
 //	rtPopMatrix();
-//  rtPushMatrix();
-//  rtTranslate(10.f,5.f,13.f);
-//	rtScale(.1f,.1f,.1f);
-//  rtRotate(2.f, 0.f, 0.f);
-//	rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
-//	rtPopMatrix();
     
     Material mat_coin(/*ambient*/STColor3f(1.f,1.f,0.f),/*diffuse*/STColor3f(1.f,1.f,0.f),/*specular*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f));
     
-//    ,/*diffuse*/STColor3f(),/*spec*/STColor3f(1.f,1.f,1.f),/*mirror*/STColor3f(.1f,.1f,.1f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
+    rtPushMatrix();
+      rtTranslate(10.f,5.f,13.f);
+      rtScale(.2f,.2f,.2f);
+      rtRotate(0.3f, 30.f, 10.f);
+      rtMaterial(mat_glass2);
+      rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
+    rtPopMatrix();
     
     rtPushMatrix();
-    rtTranslate(10.f,5.f,13.f);
-	rtScale(.2f,.2f,.2f);
-    rtRotate(0.3f, 30.f, 10.f);
-    rtMaterial(mat_coin);
-	rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
-	rtPopMatrix();
+      rtTranslate(9.f,4.f,12.f);
+      rtScale(.2f,.2f,.2f);
+      rtRotate(5.f, 70.f, 50.f);
+      rtMaterial(mat_glass2);
+      rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
+    rtPopMatrix();
     
     rtPushMatrix();
-    rtTranslate(9.f,4.f,12.f);
-	rtScale(.2f,.2f,.2f);
-    rtRotate(5.f, 70.f, 50.f);
-    rtMaterial(mat_coin);
-	rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
-	rtPopMatrix();
+      rtTranslate(6.f,3.f,9.f);
+      rtScale(.2f,.2f,.2f);
+      rtRotate(50.f, 10.f, 10.f);
+      rtMaterial(mat_glass2);
+      rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
+    rtPopMatrix();
     
     rtPushMatrix();
-    rtTranslate(6.f,3.f,9.f);
-	rtScale(.2f,.2f,.2f);
-    rtRotate(50.f, 10.f, 10.f);
-    rtMaterial(mat_coin);
-	rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
-	rtPopMatrix();
-    
-    rtPushMatrix();
-    rtMaterial(mat_glass2);
-    rtTranslate(10.f,5.f,14.f);
-    rtScale(.1f,.1f,.1f);
-    rtRotate(.3f, 30.f, 10.f); // x, y, z rotations
-    rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
+      rtMaterial(mat_glass2);
+      rtTranslate(10.f,5.f,14.f);
+      rtScale(.1f,.1f,.1f);
+      rtRotate(.3f, 30.f, 10.f); // x, y, z rotations
+      rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
     rtPopMatrix();
   
 //	rtMaterial(mat_glass1);
@@ -89,6 +81,19 @@ void ExampleScene::initializeBitcoin()
 	rtMaterial(mat_wall);
 	////ceil
 	addGround(STPoint3(0.f,0.f,0.f),STVector2(100.f,100.f),false);
+  
+  rtLoadTexture("../Standard_Tests/custom/sunset.jpg"); // Open texture and set it to id = 0
+  rtBindTexture(0); // Attempt to bind the texture to the next object
+
+  // Trying something else to make textures work on walls
+  const STPoint3 min_corner = STPoint3(0.f,0.f,0.f);
+  const STVector2 size = STVector2(100.f,100.f);
+  
+  rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z),STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z));
+  rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),STPoint3(min_corner.x,min_corner.y+size.y,min_corner.z));
+
+  rtUnbindTexture();
+  
 	////background wall
 	addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(100.f,100.f),true);
 	////forward wall
@@ -97,6 +102,7 @@ void ExampleScene::initializeBitcoin()
 	addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,100.f,0.f),STVector3(0.f,0.f,100.f),true);
 	////right wall
 	addWall(STPoint3(100.f,0.f,0.f),STVector3(0.f,100.f,0.f),STVector3(0.f,0.f,100.f),false);
+  
   
   ////use acceleration structure
   //////aabb tree
@@ -127,7 +133,7 @@ void ExampleScene::initializeSceneTexture()
 	rtUseShadow(true);
 	rtShadowBias(1e-4f);
 
-	rtLoadTexture("../Standard_Tests/stanford.png");
+	rtLoadTexture("../Standard_Tests/custom/sunset.jpg");
 	////lighting
 	rtAmbientLight(STColor3f(.1f,.1f,.1f));
 	rtPointLight(/*location*/STPoint3(-3.f,-3.f,6.f),STColor3f(.8f,.8f,.8f));

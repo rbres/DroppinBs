@@ -22,13 +22,13 @@ int main(int argc, const char * argv[])
     //scene->initializeSceneAccelerationStructureBVH();
 
     ////scenes for assignment 6  
-	scene->initializeBitcoin();
+  scene->initializeBitcoin();
 	//scene->initializeSceneTransparentObject2();
 	//scene->initializeSceneDepthOfField();
 
 	////scenes for final
 	//scene->initializeSceneObjMesh();
-	//scene->initializeSceneTexture();
+//	scene->initializeSceneTexture();
 
 	////set rendering scene from script files
 	//scene->initializeSceneFromScript("../Standard_Tests/RecursiveTest.txt");
