@@ -6,8 +6,8 @@ void ExampleScene::initializeBitcoin()
 
 	////global settings
 	rtCamera(/*eye*/STPoint3(10.f,5.f,19.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.33f);
-	rtOutput(/*width*/640,/*height*/480,/*path*/"../Standard_Tests/Bitcoin.png");
-	rtBounceDepth(5);
+	rtOutput(/*width*/1280,/*height*/960,/*path*/"../Standard_Tests/Bitcoin.png");
+	rtBounceDepth(3);
 	rtUseTransparentShadow(true);
 	rtShadowBias(.001f);
 	rtSampleRate(1);
@@ -20,7 +20,8 @@ void ExampleScene::initializeBitcoin()
 
 	Material mat_glass1(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/0.f,/*refr*/STColor3f(.9f,.3f,.1f),/*sn*/1.3f);
 	Material mat_glass2(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(1.f,1.f,1.f),/*mirror*/STColor3f(.1f,.1f,.1f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
-	Material mat_metal(/*ambient*/STColor3f(.6f,.4f,.3f),/*diffuse*/STColor3f(.6f,.4f,.3f),/*spec*/STColor3f(.2f,.2f,.2f),/*mirror*/STColor3f(.6f,.4f,.3f),/*shiness*/90.f);
+	Material mat_metal(/*ambient*/STColor3f(.8f,.6f,.3f),/*diffuse*/STColor3f(.6f,.4f,.3f),/*spec*/STColor3f(.2f,.2f,.2f),/*mirror*/STColor3f(.6f,.4f,.3f),/*shiness*/90.f);
+  Material mat_metal_yellow(/*ambient*/STColor3f(.8f,.6f,.3f),/*diffuse*/STColor3f(.6f,.4f,.3f),/*spec*/STColor3f(.2f,.2f,.2f),/*mirror*/STColor3f(.6f,.4f,.3f),/*shiness*/90.f);
 
 //  rtMaterial(mat_glass1);
 //  rtPushMatrix();
@@ -29,35 +30,29 @@ void ExampleScene::initializeBitcoin()
 //	rtTriangleMesh("../Standard_Tests/custom/Paris/Paris2010_0.obj",true,false);
 //	rtPopMatrix();
     
-    Material mat_coin(/*ambient*/STColor3f(1.f,1.f,0.f),/*diffuse*/STColor3f(1.f,1.f,0.f),/*specular*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f));
+    Material mat_coin(/*ambient*/STColor3f(1.f,1.f,0.f),/*diffuse*/STColor3f(1.f,1.f,0.f),/*specular*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(6.f,4.f,2.f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f));
     
-    rtPushMatrix();
-      rtTranslate(10.f,5.f,13.f);
+    for(float i = 5; i <= 19.5; i += 1){
+      rtPushMatrix();
+      rtTranslate(15.f/log(i)-0.5,6.f/log(i)+0.2,14.f/log(i));
       rtScale(.2f,.2f,.2f);
-      rtRotate(0.3f, 30.f, 10.f);
-      rtMaterial(mat_glass2);
+      rtRotate(1.f * rand(), 500.f/rand(), 1.f*rand());
+      rtMaterial(mat_coin);
       rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
-    rtPopMatrix();
-    
-    rtPushMatrix();
-      rtTranslate(9.f,4.f,12.f);
+      rtPopMatrix();
+      
+      rtPushMatrix();
+      rtTranslate(15.f/log(i)-1,6.f/log(i)-0.4,14.f/log(i));
       rtScale(.2f,.2f,.2f);
-      rtRotate(5.f, 70.f, 50.f);
-      rtMaterial(mat_glass2);
+      rtRotate(1.f * rand(), 500.f/rand(), 1.f*rand());
+      rtMaterial(mat_coin);
       rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
-    rtPopMatrix();
-    
+      rtPopMatrix();
+    }
+  
     rtPushMatrix();
-      rtTranslate(6.f,3.f,9.f);
-      rtScale(.2f,.2f,.2f);
-      rtRotate(50.f, 10.f, 10.f);
-      rtMaterial(mat_glass2);
-      rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
-    rtPopMatrix();
-    
-    rtPushMatrix();
-      rtMaterial(mat_glass2);
-      rtTranslate(10.f,5.f,14.f);
+      rtMaterial(mat_metal);
+      rtTranslate(10.4f,5.f,15.f);
       rtScale(.1f,.1f,.1f);
       rtRotate(.3f, 30.f, 10.f); // x, y, z rotations
       rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
@@ -76,39 +71,40 @@ void ExampleScene::initializeBitcoin()
 	Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),0.f);
 	Material mat_wall(STColor3f(0.f,5.f,23.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
 	rtMaterial(mat_ground);
-	////ground
-	addGround(STPoint3(0.f,0.f,0.f),STVector2(100.f,100.f),true);
-	rtMaterial(mat_wall);
-	////ceil
-	addGround(STPoint3(0.f,0.f,0.f),STVector2(100.f,100.f),false);
   
-  rtLoadTexture("../Standard_Tests/custom/sunset.jpg"); // Open texture and set it to id = 0
+  // GROUND
+//  rtLoadTexture("../Standard_Tests/custom/cityscape.jpg"); // Open texture and set it to id = 0
+//  rtBindTexture(0);
+//  STPoint3 min_corner = STPoint3(0.f,0.f,0.f);
+//  STVector2 size = STVector2(10.f,10.f);
+//  
+//  rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z+size.y),STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z), STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f));
+//  rtTriangle(min_corner,STPoint3(min_corner.x,min_corner.y,min_corner.z+size.y),STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z+size.y), STPoint2(0.f, 0.f), STPoint2(1.f, 1.f), STPoint2(0.f, 1.f));
+//  
+//  rtUnbindTexture();
+
+  // Back wall
+  rtLoadTexture("../Standard_Tests/custom/cityscape.jpg"); // Open texture and set it to id = 1
   rtBindTexture(0); // Attempt to bind the texture to the next object
 
   // Trying something else to make textures work on walls
-  const STPoint3 min_corner = STPoint3(0.f,0.f,0.f);
-  const STVector2 size = STVector2(100.f,100.f);
+  STPoint3 min_corner = STPoint3(-5.f,-7.f,0.f);
+  STVector2 size = STVector2(30.f,20.f);
   
-  rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z),STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z));
-  rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),STPoint3(min_corner.x,min_corner.y+size.y,min_corner.z));
+  // bottom left, bottom right, top right
+  rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z),STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z), STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f));
+  
+  // bottom left, top right, top left
+  rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),STPoint3(min_corner.x,min_corner.y+size.y,min_corner.z), STPoint2(0.f, 0.f), STPoint2(1.f, 1.f), STPoint2(0.f, 1.f));
 
   rtUnbindTexture();
-  
-	////background wall
-	addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(100.f,100.f),true);
-	////forward wall
-	addBackgroundWall(STPoint3(0.f,0.f,100.f),STVector2(100.f,100.f),false);
-	////left wall
-	addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,100.f,0.f),STVector3(0.f,0.f,100.f),true);
-	////right wall
-	addWall(STPoint3(100.f,0.f,0.f),STVector3(0.f,100.f,0.f),STVector3(0.f,0.f,100.f),false);
   
   
   ////use acceleration structure
   //////aabb tree
-//  accel_structure=AABB_TREE;
-//  AABBTree* aabb_tree=new AABBTree(objects);
-//  aabb_trees.push_back(aabb_tree);
+  accel_structure=AABB_TREE;
+  AABBTree* aabb_tree=new AABBTree(objects);
+  aabb_trees.push_back(aabb_tree);
   
   //////uniform grid
 //  accel_structure=UNIFORM_GRID;
@@ -117,8 +113,8 @@ void ExampleScene::initializeBitcoin()
 //  uniform_grid=new UniformGrid(objects,scene_bounding_box,subdivision);
   
   ////set focus on sphere 3
-//	rtSetApeture(20.f);
-//	rtSetFocus(STPoint3(10.f,5.f,14.f));
+	rtSetApeture(1.5f);
+	rtSetFocus(STPoint3(9.4f,10.f,13.7f));
 }
 
 
