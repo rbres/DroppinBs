@@ -36,11 +36,11 @@ void ExampleScene::initializeBitcoin()
 //	rtPopMatrix();
 //  
   rtPushMatrix();
-  rtMaterial(mat_glass2);
-  rtTranslate(10.f,5.f,13.f);
-	rtScale(.1f,.1f,.1f);
-  rtRotate(.3f, 30.f, 10.f); // x, y, z rotations
-	rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
+    rtMaterial(mat_glass2);
+    rtTranslate(10.f,5.f,14.f);
+    rtScale(.1f,.1f,.1f);
+    rtRotate(.3f, 30.f, 10.f); // x, y, z rotations
+    rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
 	rtPopMatrix();
   
 //	rtMaterial(mat_glass1);
@@ -72,19 +72,19 @@ void ExampleScene::initializeBitcoin()
   
   ////use acceleration structure
   //////aabb tree
-//  accel_structure=AABB_TREE;
-//  AABBTree* aabb_tree=new AABBTree(objects);
-//  aabb_trees.push_back(aabb_tree);
+  accel_structure=AABB_TREE;
+  AABBTree* aabb_tree=new AABBTree(objects);
+  aabb_trees.push_back(aabb_tree);
   
   //////uniform grid
-  accel_structure=UNIFORM_GRID;
-  AABB scene_bounding_box;getObjectsAABB(objects,scene_bounding_box);
-  int subdivision[3]={20,20,2};
-  uniform_grid=new UniformGrid(objects,scene_bounding_box,subdivision);
+//  accel_structure=UNIFORM_GRID;
+//  AABB scene_bounding_box;getObjectsAABB(objects,scene_bounding_box);
+//  int subdivision[3]={20,20,2};
+//  uniform_grid=new UniformGrid(objects,scene_bounding_box,subdivision);
   
   ////set focus on sphere 3
 //	rtSetApeture(20.f);
-//	rtSetFocus(STPoint3(.2f, -.5f, 1.f));
+//	rtSetFocus(STPoint3(10.f,5.f,14.f));
 }
 
 
