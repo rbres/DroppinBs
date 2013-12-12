@@ -28,12 +28,32 @@ void ExampleScene::initializeBitcoin()
 //	rtScale(.01f,.01f,.01f);
 //	rtTriangleMesh("../Standard_Tests/custom/Paris/Paris2010_0.obj",true,false);
 //	rtPopMatrix();
-  
-  rtPushMatrix();
-  rtTranslate(10.f,5.f,13.f);
-	rtScale(.1f,.1f,.1f);
-  rtRotate(2.f, 0.f, 0.f);
-	rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
+//  
+//  rtPushMatrix();
+//  rtTranslate(10.f,5.f,13.f);
+//	rtScale(.1f,.1f,.1f);
+//  rtRotate(2.f, 0.f, 0.f);
+//	rtTriangleMesh("../Standard_Tests/custom/fighter.obj",true,false);
+//	rtPopMatrix();
+    
+    Material mat_coin(/*ambient*/STColor3f(1.f,1.f,0.f),/*diffuse*/STColor3f(1.f,1.f,0.f),/*specular*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f));
+    
+//    ,/*diffuse*/STColor3f(),/*spec*/STColor3f(1.f,1.f,1.f),/*mirror*/STColor3f(.1f,.1f,.1f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
+    
+    rtPushMatrix();
+    rtTranslate(10.f,5.f,13.f);
+	rtScale(.3f,.3f,.3f);
+    rtRotate(0.3f, 30.f, 10.f);
+    rtMaterial(mat_coin);
+	rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
+	rtPopMatrix();
+    
+    rtPushMatrix();
+    rtTranslate(9.f,4.f,12.f);
+	rtScale(.3f,.3f,.3f);
+    rtRotate(5.f, 70.f, 50.f);
+    rtMaterial(mat_coin);
+	rtTriangleMesh("../Standard_Tests/custom/coin.obj",true,false);
 	rtPopMatrix();
   
 //	rtMaterial(mat_glass1);
